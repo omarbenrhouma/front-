@@ -5,6 +5,7 @@ export const fetchData = () => async (dispatch) => {
     try {
        axios.get ('/index')
        .then(({ data }) => {
+        console.log(data);
         dispatch(fetchDataSuccess(data));
       })
     } catch (error) {
@@ -14,8 +15,7 @@ export const fetchData = () => async (dispatch) => {
   export const updateData = (id, newData) => async (dispatch) => {
     dispatch(fetchDataStart());
     try {
-       axios.put(`/edit/${id}`, newData) 
-       .then(({ data }) => {
+      await axios.put(`/edit/${id}`, newData).then(({ data }) => {
         dispatch(updateSuccess(data));
       })
     } catch (error) {
@@ -26,8 +26,8 @@ export const fetchData = () => async (dispatch) => {
   export const deleteData = (id) => async (dispatch) => {
     dispatch(fetchDataStart());
     try {
-   axios.delete(`/delete/${id}`)
-   .then(({ data }) => {
+      await axios.delete(`/delete/${id}`)
+      axios.get('/index').then(({ data }) => {
     dispatch(deletesuccess(data));
   })
     } catch (error) {
@@ -39,7 +39,7 @@ export const fetchData = () => async (dispatch) => {
     dispatch(fetchDataStart());
     try {
         await axios.post (`/create`, newData)
-           .then(({ data }) => {
+        axios.get('/index').then(({ data }) => {
         dispatch(createSucess(data));
       })
     } catch (error) {
@@ -50,8 +50,8 @@ export const fetchData = () => async (dispatch) => {
   export const deleteallData = () => async (dispatch) => {
     dispatch(fetchDataStart());
     try {
-        axios.delete(`/deleteall`)
-        .then(({ data }) => {
+      await axios.delete(`/deleteall`)
+      axios.get('/index').then(({ data }) => {
           dispatch(deleteallsuccess(data));
         })
     } catch (error) {

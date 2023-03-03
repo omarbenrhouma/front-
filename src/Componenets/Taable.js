@@ -6,6 +6,8 @@ import Sidebar from './Sidebar';
 import Buttons from './Buttons';
 import Inserting from './Inserting';
 import columns from './columns';
+import useData from '../selector/Usedata'
+
 const { Content } = Layout;
 
 
@@ -14,7 +16,7 @@ const Taable = () => {
   useEffect(() => {
     dispatch(fetchData());
   }, [dispatch]);
-  const data = useSelector((state) => state.data);
+  const data = useData();
   const[query,setQuery] = useState("");
   const Search = (dat) =>{
     return dat.filter((item) => item.firstName.toLowerCase().includes(query) || item.address.toLowerCase().includes(query)|| item.age.toString().includes(query) || item.lastName.toLowerCase().includes(query));

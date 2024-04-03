@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "proxy": "http://10.0.0.98:5000",
+  "proxy": "http://10.0.164.142:5000",
   "private": true,
   "test": "jest --no-cache --config config/jest.config.js",
   "jest": {
